@@ -1,0 +1,25 @@
+<div class="mt-20 px-8 bg-blue-50 p-10" id="about">
+    <h2 class="text-4xl font-extrabold text-center text-blue-700 mb-12">
+      Frequently asked Questions 
+    </h2>
+    <div class="max-w-xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+        <!-- FAQ Section -->
+        <div *ngFor="let faq of faqs; let i = index" class="faq-item mb-4">
+          <!-- FAQ Question -->
+          <div 
+            (click)="toggleFAQ(i)" 
+            class="cursor-pointer py-2 px-4 border-b-2 border-gray-300 hover:bg-gray-100"
+          >
+            <h4 class="text-xl font-semibold">{{ faq.question }}</h4>
+          </div>
+      
+          <!-- FAQ Answer -->
+          <p *ngIf="faq.open" class="mt-2 text-gray-700">{{ faq.answer }}</p>
+        </div>
+      </div>
+      
+        
+      
+  
+  </div>
+  
