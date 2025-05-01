@@ -1,9 +1,14 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, Component, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
+import { AppointFormComponent } from '../components/appoint-form/appoint-form.component';
+import { HomeComponent } from '../views/home/home.component';
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(withEventReplay())]
+export const routes = [
+  {path:'',component:HomeComponent},
+  {path:'appoint-form',component:AppointFormComponent}
+]
+
+export const appConfig = {
+  providers: [provideRouter(routes)]
 };
