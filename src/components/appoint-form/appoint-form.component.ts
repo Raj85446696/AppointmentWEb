@@ -1,4 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
+import { HttpClient , HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import Swal from 'sweetalert2';
@@ -6,11 +7,14 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-appoint-form',
-  imports: [NgIf,FormsModule,NgFor],
+  standalone: true,
+  imports: [NgIf,FormsModule,NgFor,HttpClientModule ],
   templateUrl: './appoint-form.component.html',
   styleUrl: './appoint-form.component.css'
 })
 export class AppointFormComponent {
+  constructor(private http: HttpClient) {}
+
   currentStep = 1;
   steps = ['Patient Info', 'Choose Doctor', 'Date & Time', 'Confirm'];
 
@@ -48,7 +52,11 @@ export class AppointFormComponent {
       confirmButtonText: 'OK',
       confirmButtonColor: '#3085d6'
     });
+    this.http.post('http://localhost:8000/submitForm',this.formData).subscribe(response=>{
+      console.log('Form successfully submit',response);
+    })
     this.currentStep = 1;
+
     this.formData = {
       name: '',
       email: '',
@@ -69,9 +77,10 @@ handleFileInput(event: any) {
   const file = event.target.files[0];
   if (file) {
     this.uploadedFileName = file.name;
-    // Optional: You can store the file if you want to upload it later
-    // this.formData.govIdFile = file;
+    this.formData.govtId = file ; 
   }
 }
+
+
 
 }

@@ -60,9 +60,11 @@
 
             <div class="md:col-span-2">
                 <label class="block text-gray-700 mb-2 font-semibold">Upload Govt. ID</label>
-                <input type="file" [(ngModel)]="formData.govtId" name="govtId" required
+                <input type="file" (change)="handleFileInput($event)" name="govtId" required
                     class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <p *ngIf="uploadedFileName" class="text-green-600 mt-2">Selected File: {{ uploadedFileName }}</p>
             </div>
+
         </div>
 
 
@@ -137,14 +139,14 @@
                 </div>
 
                 <div>
-                    <p class="text-lg"><span class="font-semibold text-blue-600">Disease:</span> {{ formData.disease }}</p>
+                    <p class="text-lg"><span class="font-semibold text-blue-600">Disease:</span> {{ formData.disease }}
+                    </p>
                 </div>
 
                 <div>
                     <p class="text-lg">
-                        <span class="font-semibold text-blue-600">Gov ID:</span> 
+                        <span class="font-semibold text-blue-600">Gov ID:</span>
                         <span *ngIf="uploadedFileName">{{ uploadedFileName }}</span>
-                        <span *ngIf="!uploadedFileName">No file uploaded</span>
                     </p>
                 </div>
 
