@@ -3,12 +3,13 @@ import { HttpClient , HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
   selector: 'app-appoint-form',
   standalone: true,
-  imports: [NgIf,FormsModule,NgFor,HttpClientModule ],
+  imports: [NgIf,FormsModule,NgFor,HttpClientModule ,NavbarComponent],
   templateUrl: './appoint-form.component.html',
   styleUrl: './appoint-form.component.css'
 })

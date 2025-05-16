@@ -6,10 +6,11 @@ import { FacilityComponent } from '../facility/facility.component';
 import { FaqComponent } from '../faq/faq.component';
 import { FootorComponent } from '../footor/footor.component';
 import { TestimonialsComponent } from '../testimonials/testimonials.component';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-home',
-  imports: [MainComponent,ContainerComponent,AboutComponent,FacilityComponent,FaqComponent,FootorComponent,TestimonialsComponent],
+  imports: [NavbarComponent,MainComponent,ContainerComponent,AboutComponent,FacilityComponent,FaqComponent,FootorComponent,TestimonialsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
