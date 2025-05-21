@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule,NgIf,HttpClientModule],
+  imports: [FormsModule,HttpClientModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
