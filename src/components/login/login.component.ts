@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
+  email: any;
   constructor(private http: HttpClient, private router: Router) {}
   loginData = {
     email:'',
@@ -30,10 +31,16 @@ showLoginMessage(message: string) {
   setTimeout(() => this.loginMessage = '', 4000);
 }
 
+
+
   loginUser() {
   this.http.post<any>('http://localhost:8000/login', this.loginData).subscribe({
     next: (res) => {
       localStorage.setItem('token', res.token);
+
+      // 🔥 Store user-specific data
+      localStorage.setItem('user', JSON.stringify(res.user));  // 👈 yeh line add karo
+
       this.errorMessage = '';
       this.showLoginMessage('Login successful! Redirecting...');
       setTimeout(() => this.router.navigate(['/']), 1500);
@@ -43,5 +50,7 @@ showLoginMessage(message: string) {
     }
   });
 }
+
+
 
 }

@@ -12,6 +12,7 @@ interface FormData {
   age: string;
   gender: string;
   disease: string;
+  doctor:string
 }
 
 @Component({
@@ -22,12 +23,22 @@ interface FormData {
   styleUrls: ['./view-appoint.component.css']
 })
 export class ViewAppointComponent implements OnInit {
-  Role:string="Doctor";
+  Role:string= 'Doctor';  // Doctor
   formData: FormData[] = [];
+  view = 'reject' ; 
 
    constructor(private http: HttpClient) {}
 
   ngOnInit() {
+
+    this.http.get<{Role:string}>('http://localhost:8000/signup').subscribe({
+      next:data=>this.Role=data.Role,
+    
+      error:err=>{
+        console.error('Error Fetching role',err);
+      }
+    });
+
     this.http.get<FormData[]>('http://localhost:8000/api/formdata').subscribe({
       next: data => this.formData = data,
       error: err => {
@@ -36,4 +47,6 @@ export class ViewAppointComponent implements OnInit {
       }
     });
   }
+
+
 }

@@ -1,10 +1,11 @@
 <app-navbar></app-navbar>
 
+<!-- Doctor View -->
 <div class="mt-10 px-4" *ngIf="Role === 'Doctor'">
   <h1 class="text-2xl font-bold text-blue-700 mb-4 text-center">Book Appointment Details</h1>
   <hr class="border-blue-300 mb-10">
   <div *ngFor="let data of formData"
-      class="bg-white shadow-xl rounded-2xl p-10 w-full h-[230px] mx-auto border border-blue-200 flex flex-col justify-between mb-10">
+    class="bg-white shadow-xl rounded-2xl p-10 w-full h-[230px] mx-auto border border-blue-200 flex flex-col justify-between mb-10">
     <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-800 text-lg">
       <p><span class="font-semibold text-blue-600">Name:</span> {{ data.name }}</p>
       <p><span class="font-semibold text-blue-600">Email:</span> {{ data.email }}</p>
@@ -16,32 +17,41 @@
       <p><span class="font-semibold text-blue-600">Appointment Time:</span> {{ data.time }}</p>
     </div>
     <div class="flex justify-end gap-4">
-      <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition duration-300 shadow-md">Reject</button>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 shadow-md">Accept</button>
+      <button
+        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-800 transition duration-300 shadow-md">Reject</button>
+      <button
+        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-800 transition duration-300 shadow-md">Accept</button>
     </div>
   </div>
 </div>
+
 <!-- Patient View -->
 <div class="mt-10 px-4" *ngIf="Role === 'Patient'">
   <h1 class="text-2xl font-bold text-blue-700 mb-4 text-center">Book Appointment Details</h1>
   <hr class="border-blue-300 mb-10">
-  <div class="bg-white shadow-xl rounded-2xl p-10 w-full h-auto mx-auto border border-blue-200 flex flex-col justify-between mb-10">
-    <div class="grid grid-cols-2 gap-x-6 gap-y-3 text-gray-800 text-[17px]">
-      <p><span class="font-semibold text-blue-600">Name:</span> Ritu Raj Kumar</p>
-      <p><span class="font-semibold text-blue-600">Email:</span> riturajkumar8544</p>
-      <p><span class="font-semibold text-blue-600">Phone:</span> +918544669544</p>
-      <p><span class="font-semibold text-blue-600">Age:</span> 19</p>
-      <p><span class="font-semibold text-blue-600">Gender:</span> Male</p>
-      <p><span class="font-semibold text-blue-600">Disease:</span> Heart Attack</p>
-      <p><span class="font-semibold text-blue-600">Appointment Date:</span> 12/03/2025</p>
-      <p><span class="font-semibold text-blue-600">Appointment Time:</span> 12:00 PM</p>
-      <p><span class="font-semibold text-blue-600">Doctor:</span> Dr. Ritu Raj Verma</p>
+  <div *ngFor="let data of formData"
+    class="bg-white shadow-xl rounded-2xl p-10 w-full h-[280px] mx-auto border border-blue-200 flex flex-col justify-between mb-10">
+    <div class="grid grid-cols-2 gap-x-6 gap-y-2 text-gray-800 text-lg">
+      <p><span class="font-semibold text-blue-600">Name:</span> {{ data.name }}</p>
+      <p><span class="font-semibold text-blue-600">Email:</span> {{ data.email }}</p>
+      <p><span class="font-semibold text-blue-600">Phone:</span> {{ data.phone }}</p>
+      <p><span class="font-semibold text-blue-600">Age:</span> {{ data.age }}</p>
+      <p><span class="font-semibold text-blue-600">Gender:</span> {{ data.gender }}</p>
+      <p><span class="font-semibold text-blue-600">Disease:</span> {{ data.disease }}</p>
+       <p><span class="font-semibold text-blue-600">Doctor Name :</span> {{ data.doctor }}</p>
+      <p><span class="font-semibold text-blue-600">Appointment Date:</span> {{ data.date }}</p>
+      <p><span class="font-semibold text-blue-600">Appointment Time:</span> {{ data.time }}</p>
     </div>
 
+
     <div class="mt-6 flex gap-4 flex-wrap">
-      <span class="px-4 py-1 text-sm rounded-full bg-green-100 text-green-700 font-semibold border border-green-300 shadow-sm">Confirmed</span>
-      <span class="px-4 py-1 text-sm rounded-full bg-yellow-100 text-yellow-700 font-semibold border border-yellow-300 shadow-sm">Pending</span>
-      <span class="px-4 py-1 text-sm rounded-full bg-red-100 text-red-700 font-semibold border border-red-300 shadow-sm">Rejected</span>
+      <span *ngIf="view=='confirm'"
+        class="px-4 py-1 text-sm rounded-full bg-green-100 text-green-700 font-semibold border border-green-300 shadow-sm">Confirmed</span>
+      <span *ngIf="view=='pending'"
+        class="px-4 py-1 text-sm rounded-full bg-yellow-100 text-yellow-700 font-semibold border border-yellow-300 shadow-sm">Pending</span>
+      <span *ngIf="view=='reject'"
+        class="px-4 py-1 text-sm rounded-full bg-red-100 text-red-700 font-semibold border border-red-300 shadow-sm">Rejected</span>
     </div>
+
   </div>
 </div>
