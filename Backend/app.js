@@ -67,6 +67,28 @@ app.post('/login', async (req, res) => {
     }
 });
 
+app.post('/signup', async(req, res) => {
+    try {
+        const data = req.body;
+        const newForm = new SignUpData(data);
+        await newForm.save();
+        res.status(200).json({ message: 'Form submitted successfully' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error saving form data' });
+    }
+});
+
+app.get('/signup',async(req,res)=>{
+    const data = await SignUpData.find();
+    res.json(data);
+})
+
+app.get('/api/formdata',async(req,res)=>{
+    const data = await FormData.find(); 
+    res.json(data);
+})
+
 app.post('/submitForm', async(req, res) => {
     try {
         const data = req.body;
@@ -79,17 +101,6 @@ app.post('/submitForm', async(req, res) => {
     }
 });
 
-app.post('/signup', async(req, res) => {
-    try {
-        const data = req.body;
-        const newForm = new SignUpData(data);
-        await newForm.save();
-        res.status(200).json({ message: 'Form submitted successfully' });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error saving form data' });
-    }
-});
 
 app.listen(PORT, () => {
     console.log(`Your Server is Running on PORT ${PORT}`)
